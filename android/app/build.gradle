@@ -85,6 +85,11 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    externalNativeBuild {
+        cmake {
+            version rootProject.ext.cmakeVersion // Use the global CMake version
+        }
+    }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')

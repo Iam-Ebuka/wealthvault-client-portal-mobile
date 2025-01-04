@@ -72,28 +72,30 @@ const VerificationScreen = ({ navigation }) => {
     const response = await post_verify_login_2fa(code, twoFaMethods);
     if (response) {
       let data = response.data.data;
-      console.log('data method :>> ', data.method);
-      // dispatch(
-      //   setAuth({
-      //     accessToken: data.accessToken,
-      //     expiryTime: data.expiresAt,
-      //     refreshToken: data.refreshToken,
-      //     method: data.method,
-      //   })
-      // );
+      // console.log("data is", data)
+      // console.log('data method :>> ', data.method);
+      dispatch(
+        setAuth({
+          accessToken: data.accessToken,
+          expiryTime: data.expiresAt,
+          refreshToken: data.refreshToken,
+          method: data.method,
+        })
+      );
 
       navigation.navigate(Routes.DASHBOARD);
 
-      // const authResponse = await auth();
-      // if (authResponse) {
-      //   console.log('authResponse :>> ', authResponse);
-      //   const authData = authResponse.data.data;
-      //   dispatch(setCurrentUser(authData));
-      //   // handleLoginSuccessful(authResponse);
-      //   return response;
-      // } else {
-      //   dispatch(setCurrentUser(null));
-      // }
+      const authResponse = await auth();
+      if (authResponse) {
+        // console.log('authResponse :>> ', authResponse);
+        const authData = authResponse.data.data;
+        // console.log("authdata", authData)
+        dispatch(setCurrentUser(authData));
+        // handleLoginSuccessful(authResponse);
+        return response;
+      } else {
+        dispatch(setCurrentUser(null));
+      }
     }
     setLoading(false);
   };

@@ -1,21 +1,36 @@
+// Root-level build.gradle
 buildscript {
     ext {
-        buildToolsVersion = "35.0.0"
+        buildToolsVersion = "35.0.0" // Ensure this matches your SDK version
         minSdkVersion = 24
         compileSdkVersion = 35
-        targetSdkVersion = 34
+        targetSdkVersion = 35
         ndkVersion = "26.1.10909125"
         kotlinVersion = "1.9.24"
+        cmakeVersion = "3.22.1"
     }
+
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://www.jitpack.io' } // Required for some React Native dependencies
     }
+
     dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.android.tools.build:gradle:8.1.1") // Use the correct Gradle plugin version
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}") // Kotlin plugin
+        classpath("com.facebook.react:react-native-gradle-plugin") // React Native plugin
     }
 }
 
-apply plugin: "com.facebook.react.rootproject"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' } // Ensure included
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

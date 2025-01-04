@@ -61,7 +61,7 @@ const SignInScreen = ({ navigation }) => {
 
       if (response) {
         const data = response.data.data;
-        
+        console.log("data", data)
         // Check if two-factor authentication is required
         if (data.twoFaRequired) {
           console.log('data two :>> ', data.twoFaRequired);
