@@ -12,7 +12,7 @@ const Dashboard = ({ navigation }) => {
 const encodedUser = encodeURIComponent(JSON.stringify(currentUser));
 
 // Construct the dashboard URL with query parameters
-const dashboardUrl = `http://192.168.115.128:3000/dashboard?accessToken=${encodeURIComponent(accessToken)}&expiryTime=${encodeURIComponent(expiryTime)}&currentUser=${encodedUser}&refreshToken=${encodeURIComponent(refreshToken)}&method=${encodeURIComponent(method)}`;
+const dashboardUrl = `https://client-portal-staging.wealthvault.io/dashboard?accessToken=${encodeURIComponent(accessToken)}&expiryTime=${encodeURIComponent(expiryTime)}&currentUser=${encodedUser}&refreshToken=${encodeURIComponent(refreshToken)}&method=${encodeURIComponent(method)}`;
 
 console.log('Dashboard URL:', dashboardUrl);
 
